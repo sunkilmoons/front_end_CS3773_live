@@ -1,0 +1,35 @@
+
+.db-page {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+    min-height: 800px;
+    /* white-space: pre; */
+    padding-bottom: 200px;
+}
+
+.db-left {
+    flex: 0 1 50%;
+    max-width: 50%;
+    min-height: 100%;
+    padding: 0 2rem;
+}
+
+.db-right {
+    flex: 0 1 50%;
+    max-width: 50%;
+    min-height: 100%;
+    padding: 0 2rem;
+}
+
+.code-block-container {
+    background-color: rgba(0, 0, 0, 0.05);
+    padding: 0.01rem 20px 0.01rem;
+    border-radius: 8px;
+}
+
+.db-sticky {
+    position: sticky;
+    top: 0;
+}
