@@ -27,7 +27,11 @@ export const initialAppState = {
     },
     {
       code: '7777777',
+<<<<<<< HEAD
       discount: 1, // percent discount
+=======
+      discount: 100, // percent discount
+>>>>>>> cassidy
     },
   ],
 }
