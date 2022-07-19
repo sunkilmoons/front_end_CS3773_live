@@ -156,18 +156,18 @@ It contains the state for the entire app and handles all state changes. You'll n
           tax and total. Add an item or two to see a change.
         </p>
         <CodeBlock>
-          Cart.getSalesTax(state.loggedInUser.cart) = $
-          {Cart.getSalesTax(state.loggedInUser.cart)}
+          Cart.getSalesTax(state.loggedInUser?.cart) = $
+          {Cart.getSalesTax(state.loggedInUser?.cart)}
         </CodeBlock>
         <div style={{ height: '20px' }} />
         <CodeBlock>
           Cart.getSubtotal(state.loggedInUser.cart) = $
-          {Cart.getSubtotal(state.loggedInUser.cart)}
+          {Cart.getSubtotal(state.loggedInUser?.cart)}
         </CodeBlock>
         <div style={{ height: '20px' }} />
         <CodeBlock>
           Cart.getTotal(state.loggedInUser.cart) = $
-          {Cart.getTotal(state.loggedInUser.cart)}
+          {Cart.getTotal(state.loggedInUser?.cart)}
         </CodeBlock>
       </div>
       <div className="db-right">
