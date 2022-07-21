@@ -13,6 +13,11 @@ export const NavBar = () => {
           <AiOutlineShoppingCart size={40} style={{ cursor: 'pointer' }} />
         </Link>
       </div>
+      <div>
+          <Link to="/account">
+            <AiOutlineShoppingCart size={40} style={{ cursor: 'pointer' }} />
+          </Link>
+      </div>
     </nav>
   )
 }
