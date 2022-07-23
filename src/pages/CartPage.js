@@ -4,8 +4,9 @@ export const CartPage = () => {
       <h1
         style={{
           flex: 1,
+          color: 'white',
           textAlign: 'center',
-          alignSelf: 'center',
+          // alignSelf: 'center',
         }}
       >
         Shopping Cart

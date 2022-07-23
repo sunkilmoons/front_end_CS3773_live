@@ -8,8 +8,11 @@ export const HomePage = () => {
       <h1
         style={{
           flex: 1,
+          color: 'white',
           textAlign: 'center',
-          alignSelf: 'center',
+          paddingLeft:'10px',
+          
+          
         }}
       >
         Home
