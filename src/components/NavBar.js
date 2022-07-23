@@ -1,23 +1,43 @@
-import logo from '../assets/logo.svg'
+import home from '../assets/home.svg'
 import { AiOutlineShoppingCart } from 'react-icons/ai'
+import person from '../assets/person.svg'
 import { Link } from 'react-router-dom'
+
+var size='50px'
 
 export const NavBar = () => {
   return (
     <nav className="NavBar">
-      <Link to="/" style={{ height: '100%' }}>
-        <img src={logo} alt={logo} style={{ height: '100%' }} />
+      
+      <Link to="/" style={{ height: '100%',fontSize:'48px',font:'Times New Roman'}}>
+        <img src={home} alt={home} style={{ height: '100%',
+          // height:size,
+          // width:size,
+          backgroundColor: 'white',
+          borderRadius: '10px' }} />
+          
       </Link>
+
       <div>
         <Link to="/cart">
-          <AiOutlineShoppingCart size={40} style={{ cursor: 'pointer' }} />
+          <AiOutlineShoppingCart size={40} style={{ cursor: 'pointer',
+            color: 'black',
+            backgroundColor:'white',
+            borderRadius:'10px'}} />
         </Link>
       </div>
-      <div>
+      <div class="dropdown-menu">
           <Link to="/account">
-            <AiOutlineShoppingCart size={40} style={{ cursor: 'pointer' }} />
+            <img src={person} alt={person} style={
+              { cursor: 'pointer',
+                backgroundColor: 'white',
+                borderRadius: '20px'}} />
+                
+
           </Link>
+          
       </div>
+     
     </nav>
   )
 }

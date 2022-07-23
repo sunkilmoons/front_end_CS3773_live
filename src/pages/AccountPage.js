@@ -5,11 +5,11 @@ export const AccountPage = () => {
         <h1
           style={{
             flex: 1,
-            textAlign: 'center',
-            alignSelf: 'center',
+            color: 'white',
+            textAlign:'center',
           }}
         >
-          Account
+          Sign In / Create Account
         </h1>
       </div>
     )
