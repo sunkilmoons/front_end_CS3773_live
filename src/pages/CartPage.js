@@ -12,19 +12,10 @@ export const CartPage = () => {
       <h1
         style={{
           flex: 1,
-<<<<<<< HEAD
           color: 'Black',
           textAlign: 'center',
         }}>
         Your Shopping Cart:
-=======
-          color: 'white',
-          textAlign: 'center',
-          // alignSelf: 'center',
-        }}
-      >
-        Shopping Cart
->>>>>>> ae084377b1cac379a6a998ed62197710295cec76
       </h1>
       </div>
       <div className='TotalBar'>
