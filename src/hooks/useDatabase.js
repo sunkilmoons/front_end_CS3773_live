@@ -11,7 +11,8 @@ const throwInvalidPayload = (actionType, examplePayload) => {
   alert(
     `Error: Wrong payload for action: ${actionType}.\nExample usage: dispatch({ type: '${actionType}', payload: ${JSON.stringify(
       examplePayload,
-      null
+      null,
+      4
     )} })`
   )
 }
@@ -31,11 +32,13 @@ const reducer = (state, action) => {
             "You can't log in if there is already a 'state.loggedInUser'. Try a sign out first.",
         }
 
-      if (!username || !password)
+      if (!username || !password) {
         throwInvalidPayload(action.type, {
           username: 'test_user',
           password: 'my_password',
         })
+        return state
+      }
 
       const user = state.users.filter((u) => u.username === username)[0]
 
@@ -58,11 +61,13 @@ const reducer = (state, action) => {
             "You can't sign up if there is already a 'state.loggedInUser'. Try a sign out first.",
         }
 
-      if (!username || !password)
+      if (!username || !password) {
         throwInvalidPayload(action.type, {
           username: 'test_user',
           password: 'my_password',
         })
+        return state
+      }
 
       if (state.users.filter((u) => u.username === username).length > 0)
         return {
@@ -89,7 +94,7 @@ const reducer = (state, action) => {
       return { ...state, errorMessage: null, loggedInUser: null }
 
     case 'add item':
-      if (!item)
+      if (!item) {
         throwInvalidPayload(action.type, {
           item: {
             name: 'Apple',
@@ -98,6 +103,8 @@ const reducer = (state, action) => {
             stockCount: 15,
           },
         })
+        return state
+      }
 
       if (!currentUser)
         return {
@@ -119,7 +126,7 @@ const reducer = (state, action) => {
       }
 
     case 'remove item':
-      if (!item)
+      if (!item) {
         throwInvalidPayload(action.type, {
           item: {
             name: 'Apple',
@@ -128,6 +135,8 @@ const reducer = (state, action) => {
             stockCount: 15,
           },
         })
+        return state
+      }
 
       if (!currentUser)
         return {
