@@ -8,7 +8,7 @@
     padding-bottom: 200px;
 }
 
-.cart-left {
+.cart-header {
     flex: 0 1 50%;
     max-width: 100%;
     min-height: 100%;
