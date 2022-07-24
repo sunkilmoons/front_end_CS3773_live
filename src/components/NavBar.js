@@ -1,8 +1,9 @@
 import home from '../assets/home.svg'
+import Search from './search'
 import { AiOutlineShoppingCart } from 'react-icons/ai'
 import person from '../assets/person.svg'
 import { Link } from 'react-router-dom'
-
+import '../styles/NavBar.css'
 var size='50px'
 
 export const NavBar = () => {
@@ -35,8 +36,9 @@ export const NavBar = () => {
                 
 
           </Link>
-          
+          <Search/>
       </div>
+    
      
     </nav>
   )

@@ -55,16 +55,16 @@ export const HomePage = () => {
           flex: 0,
           textAlign: 'center',
           alignSelf: 'center',
-          color: 'blue',
+          color: 'white',
         }}
       >
         Items For Sale
       </h2>
-      <input
+      {/* <input
         value={searchText}
         onChange={(event) => setSearchText(event.target.value)}
         placeholder="search"
-      />
+      /> */}
       <ul
         style={{
           flex: 0,
