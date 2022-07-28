@@ -2,49 +2,58 @@ import React, { useEffect, useState } from 'react'
 import pic from '../assets/plus_sign.png'
 import { useDatabase, useLoginWithTestUser } from '../hooks'
 
+const SORT_PRICE = 'price'
+const SORT_AVAIL = 'availability'
+
 export const HomePage = () => {
   const [state, dispatch] = useDatabase()
 
-    const [searchText, setSearchText] = useState('')
+  const [searchText, setSearchText] = useState('')
 
-    const [item_choice, setItem_choice] = useState([])
-    const [sortType, setSortType] = useState('price')
+  const [item_choice, setItem_choice] = useState([])
+
+  const [sortType, setSortType] = useState('')
+  const [sortASC, setSortASC] = useState(true)
 
   // login with test user so we have a cart to work with.
   // until we get the account page setup.
   useLoginWithTestUser()
 
-    const handleClick = (item) => {
-        // add item to cart...
-        dispatch({ type: 'add item', payload: { item } })
+  const handleClick = (item) => {
+    // add item to cart...
+    dispatch({ type: 'add item', payload: { item } })
 
-        alert(
-            `You clicked item: ${JSON.stringify(
-                item,
-                null,
-                2
-            )}\n\nThe previous cart looked like ${JSON.stringify(
-                state.loggedInUser?.cart?.items,
-                null,
-                4
-            )}`
-        )
+    alert(
+      `You clicked item: ${JSON.stringify(
+        item,
+        null,
+        2
+      )}\n\nThe previous cart looked like ${JSON.stringify(
+        state.loggedInUser?.cart?.items,
+        null,
+        4
+      )}`
+    )
+  }
+
+  /**
+   *  Sort functions in js require a number returned
+   *  Positive numbers will be positioned last, negative first
+   */
+  function handleSort(itemA, itemB) {
+    switch (sortType) {
+      case SORT_PRICE:
+        if (sortASC) return itemA.price > itemB.price ? 1 : -1
+        else return itemA.price < itemB.price ? 1 : -1
+
+      case SORT_AVAIL:
+        // TODO: handle availability here...
+        return -1
+
+      default:
+        return 0
     }
-
-
-    function handleSort (item) {
-        const sortedData = [...item].sort((a, b) => {
-            switch (item) {
-                case item.price:
-                    return (item.a > item.b ? 1 : -1)
-                case item.availability:
-                    return (item.a > item.b ? 1 : -1)
-                default:
-                    return null
-            }
-        })
-        return sortedData
-    }
+  }
 
   return (
     <div
@@ -55,8 +64,7 @@ export const HomePage = () => {
         flexWrap: 'wrap',
         flexDirection: 'column',
       }}
-      >
-
+    >
       <h1
         style={{
           flex: 0,
@@ -83,13 +91,11 @@ export const HomePage = () => {
         value={searchText}
         onChange={(event) => setSearchText(event.target.value)}
         placeholder="search"
-          />
-          <button onClick={() => handleSort(item.price)}>
-              Sort By Price
-          </button>
-          <button onClick={() => handleSort(item.availability)}>
-              Sort By Availability
-          </button>
+      />
+      <button onClick={() => setSortType(SORT_PRICE)}>Sort By Price</button>
+      <button onClick={() => setSortType(SORT_AVAIL)}>
+        Sort By Availability
+      </button>
 
       <ul
         style={{
@@ -98,9 +104,9 @@ export const HomePage = () => {
           textAlign: 'center',
           alignSelf: 'center',
         }}
-          >
-
-         {state.items
+      >
+        {state.items
+          .sort((a, b) => handleSort(a, b))
           .filter((i) =>
             i.name.toLowerCase().includes(searchText.toLowerCase())
           )
