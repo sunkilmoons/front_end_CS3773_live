@@ -31,20 +31,20 @@ export const HomePage = () => {
         )
     }
 
-    /*useEffect(() => {
-        const sortArray = type => {
-            const types = {
-                price: 'price',
-                availability: 'availability',
-            };
-            const sortProperty = types[type]
-            const sorted = [...items].sort((a, b) => b[sortProperty] - a[sortproperty])
-            setItem_choice(sorted)
-        };
 
-        sortArray(sortType)
-
-    }, [sortType]);*/
+    function handleSort (item) {
+        const sortedData = [...item].sort((a, b) => {
+            switch (item) {
+                case item.price:
+                    return (item.a > item.b ? 1 : -1)
+                case item.availability:
+                    return (item.a > item.b ? 1 : -1)
+                default:
+                    return null
+            }
+        })
+        return sortedData
+    }
 
   return (
     <div
@@ -55,7 +55,8 @@ export const HomePage = () => {
         flexWrap: 'wrap',
         flexDirection: 'column',
       }}
-    >
+      >
+
       <h1
         style={{
           flex: 0,
@@ -83,11 +84,13 @@ export const HomePage = () => {
         onChange={(event) => setSearchText(event.target.value)}
         placeholder="search"
           />
-          <select onChange={(event) => setSortType(event.target.value)}>
-              <option>Any Item</option>
-              <option value="price">Price</option>
-              <option value="availability">Availability</option>
-          </select>
+          <button onClick={() => handleSort(item.price)}>
+              Sort By Price
+          </button>
+          <button onClick={() => handleSort(item.availability)}>
+              Sort By Availability
+          </button>
+
       <ul
         style={{
           flex: 0,
@@ -95,8 +98,9 @@ export const HomePage = () => {
           textAlign: 'center',
           alignSelf: 'center',
         }}
-      >
-        {state.items
+          >
+
+         {state.items
           .filter((i) =>
             i.name.toLowerCase().includes(searchText.toLowerCase())
           )
