@@ -4,6 +4,7 @@ import { useDatabase, useLoginWithTestUser } from '../hooks'
 
 const SORT_PRICE = 'price'
 const SORT_AVAIL = 'availability'
+const SORT_RESET = 'item'
 
 export const HomePage = () => {
   const [state, dispatch] = useDatabase()
@@ -41,20 +42,25 @@ export const HomePage = () => {
    *  Positive numbers will be positioned last, negative first
    */
   function handleSort(itemA, itemB) {
-    switch (sortType) {
+      switch (sortType) {
+
       case SORT_PRICE:
         if (sortASC) return itemA.price > itemB.price ? 1 : -1
         else return itemA.price < itemB.price ? 1 : -1
 
       case SORT_AVAIL:
         // TODO: handle availability here...
-        return -1
+         if (sortASC) return itemA.stockCount > itemB.stockCount ? 1 : -1
+         else return itemA.stockCount < itemB.stockCount ? 1 : -1
 
-      default:
+          case SORT_RESET:
+              return itemA != itemB ? -1 : 1
+
+       default:
         return 0
     }
   }
-
+ 
   return (
     <div
       className="App"
@@ -92,15 +98,42 @@ export const HomePage = () => {
         onChange={(event) => setSearchText(event.target.value)}
         placeholder="search"
       />
-      <button onClick={() => setSortType(SORT_PRICE)}>Sort By Price</button>
-      <button onClick={() => setSortType(SORT_AVAIL)}>
+          <button
+              style={{
+                  margin: 1,
+                  borderOutline: 1,
+                  borderRadius: 10,
+                  width: 100,
+                  alignSelf: 'center',
+              } }
+              onClick={() => setSortType(SORT_PRICE)}>Sort By Price</button>
+          <button
+              style={{
+                  margin: 1,
+                  borderOutline: 1,
+                  borderRadius: 10,
+                  width: 130,
+                  alignSelf: 'center',
+              }}
+              onClick={() => setSortType(SORT_AVAIL)}>
         Sort By Availability
-      </button>
+          </button>
+          <button
+              style={{
+                  margin: 1,
+                  borderOutline: 1,
+                  borderRadius: 10,
+                  width: 130,
+                  alignSelf: 'center',
+              }}
+              onClick={() => setSortType(SORT_RESET)}>
+              No Sort
+          </button>
+          
 
       <ul
         style={{
           flex: 0,
-          flexWrap: 'wrap',
           textAlign: 'center',
           alignSelf: 'center',
         }}
@@ -119,7 +152,7 @@ export const HomePage = () => {
                 margin: 20,
                 fontFamily: 'Arial Black',
                 fontSize: 18,
-                color: 'orange',
+                color: 'blue',
               }}
             >
               <h3
@@ -141,9 +174,9 @@ export const HomePage = () => {
                 }}
                 onClick={() => handleClick(item)}
               />
-              <p>{item.description}</p>
-              <p>{item.price}</p>
-              <p>{item.stockCount}</p>
+              <p>Desc: {item.description}</p>
+              <p>${item.price}</p>
+              <p>Availability: {item.stockCount}</p>
             </div>
           ))}
       </ul>
