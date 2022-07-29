@@ -1,22 +1,33 @@
 .App {
-  background-color: 'white';
+ 
   width: 100vw;
   height: 100vh;
   position: relative;
+  background: url(assets/bike.jpg) no-repeat center center fixed; 
+  
+  background-blend-mode: ;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  
+
 }
 
 .NavBar {
+  background-color: white;
+  
   height: 64px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   padding: 0 2rem;
-  max-width: 1280px;
+  max-width: 1920px;
   margin: 0 auto;
 }
 
-.Cart-Page {
+/*.Cart-Page {
   width: 100vw;
   height: 100vh;
-}
+}*/
