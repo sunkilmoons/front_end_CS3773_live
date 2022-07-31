@@ -193,6 +193,7 @@ export const reducer = (state, action) => {
       }
 
       currentUser.cart.items = []
+      currentUser.cart.coupon = null
 
       return {
         ...state,
@@ -208,6 +209,7 @@ export const reducer = (state, action) => {
 
     case 'clear cart':
       currentUser.cart.items = []
+      currentUser.cart.coupon = null
 
       return {
         ...state,
