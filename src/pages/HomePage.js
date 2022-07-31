@@ -50,7 +50,7 @@ export const HomePage = () => {
       </h1>
 
       <h2
-        classname="title for items"
+        className="title for items"
         style={{
           flex: 0,
           textAlign: 'center',

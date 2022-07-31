@@ -17,7 +17,7 @@ const throwInvalidPayload = (actionType, examplePayload) => {
   )
 }
 
-const reducer = (state, action) => {
+export const reducer = (state, action) => {
   const username = action.payload?.username
   const password = action.payload?.password
   const item = action.payload?.item
@@ -160,11 +160,13 @@ const reducer = (state, action) => {
 
     case 'apply coupon':
       let error = null
-      if (!couponCode) currentUser.cart.couponCode = null
+      if (!couponCode) currentUser.cart.coupon = null
       else {
-        const code = state.couponCodes.filter((c) => c.code === couponCode)[0]
-        currentUser.cart.couponCode = code || null
-        if (!code) error = 'Incorrect coupon code!'
+        const storeCoupon = state.couponCodes.filter(
+          (c) => c.code === couponCode
+        )[0]
+        currentUser.cart.coupon = storeCoupon || null
+        if (!storeCoupon) error = 'Incorrect coupon code!'
       }
 
       return {
