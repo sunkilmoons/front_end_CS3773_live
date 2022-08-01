@@ -31,5 +31,7 @@
 
 .db-sticky {
     position: sticky;
-    top: 0;
+    top: 5vh;
+    overflow: scroll;
+    height: 90vh;
 }

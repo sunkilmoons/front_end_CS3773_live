@@ -1,5 +1,21 @@
+.NavBar {
+    height: 64px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+    max-width: 1920px;
+    margin: 0 auto;
+}
+
 .dropdown-menu{
     display: flex;
-    width: 400px;
+    gap: 16px;
+}
 
+.hover-item:hover {
+    transform: scale(1.1);
+    transition: all .1s ease-in-out;
+    opacity: .8;
 }
