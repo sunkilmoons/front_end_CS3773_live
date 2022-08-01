@@ -4,7 +4,7 @@ export class Cart {
   constructor(id, items) {
     this.id = id
     this.items = items || []
-    this.couponCode = null
+    this.coupon = null
   }
 
   /**
@@ -33,7 +33,7 @@ export class Cart {
     let total = cart.items
       .map((i) => i.price + i.price * SALES_TAX_PERCENT)
       .reduce((p, c) => p + c, 0)
-    if (cart.couponCode) total = total - total * cart.couponCode.discount
+    if (cart.coupon) total = total - total * cart.coupon.discount
     return total
   }
 }

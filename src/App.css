@@ -3,10 +3,8 @@
   width: 100vw;
   height: 100vh;
   position: relative;
+  background: #feffff; 
   
-  background-color: white;
-  
-  background-blend-mode: ;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
