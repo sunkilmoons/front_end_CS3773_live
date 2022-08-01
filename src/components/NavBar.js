@@ -38,7 +38,6 @@ export const NavBar = () => {
           </Link>
           <Search/>
       </div>
-    
      
     </nav>
   )

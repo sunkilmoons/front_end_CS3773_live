@@ -3,7 +3,8 @@
   width: 100vw;
   height: 100vh;
   position: relative;
-  background: url(assets/bike.jpg) no-repeat center center fixed; 
+  
+  background-color: white;
   
   background-blend-mode: ;
   -webkit-background-size: cover;
@@ -13,18 +14,17 @@
   
 
 }
-
+/* background: url(assets/bike.jpg) no-repeat center center fixed; */
 .NavBar {
-  background-color: white;
-  
-  height: 64px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 2rem;
-  max-width: 1920px;
-  margin: 0 auto;
+    background-color: white;
+    height: 64px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+    max-width: 1920px;
+    margin: 0 auto;
 }
 
 /*.Cart-Page {

@@ -66,7 +66,6 @@ export const HomePage = () => {
       className="App"
       style={{
         display: 'flex',
-        //justifyContent: 'space-between',
         flexWrap: 'wrap',
         flexDirection: 'column',
       }}
