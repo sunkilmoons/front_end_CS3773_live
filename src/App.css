@@ -12,6 +12,27 @@
   
 
 }
+
+.DB-Example-Link {
+  position: fixed;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  right: 0;
+  bottom: 0;
+  z-index: 100;
+  background: rgba(0, 0,0, 0.1);
+  padding: 0 2rem;
+  border-top-left-radius: 24px;
+  color: black;
+  text-decoration: none;
+}
+
+.DB-Example-Link:hover {
+  transition: all .2s ease-in;
+  opacity: 0.5;
+}
 /* background: url(assets/bike.jpg) no-repeat center center fixed; */
 
 /*.Cart-Page {

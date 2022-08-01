@@ -27,6 +27,9 @@
     background-color: rgba(0, 0, 0, 0.05);
     padding: 0.01rem 20px 0.01rem;
     border-radius: 8px;
+    border-width: 2px;
+    border-color: rgba(0, 0, 0, 0.1);
+    border-style: solid;
 }
 
 .db-sticky {
@@ -34,4 +37,7 @@
     top: 5vh;
     overflow: scroll;
     height: 90vh;
+    background-color: azure;
+    border-color: cornflowerblue;
+    font-weight: 500;
 }
