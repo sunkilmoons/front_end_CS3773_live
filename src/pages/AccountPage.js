@@ -1,9 +1,17 @@
 import "../styles/Login.css";
 import "../styles/AccountPage.css";
+import { useState } from "react";
+import { useDatabase } from '../hooks'
 import { Link } from 'react-router-dom'
 
+
 export const AccountPage = () => {
- 
+  
+  const [ state, dispatch] = useDatabase()
+  const [email, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
+  
   return (
     <div className="AccountPage">
       
@@ -14,13 +22,27 @@ export const AccountPage = () => {
           <h5 >Email</h5>
           <input type='text'
            placeholder="Email Address"
-           autoComplete="on"/>
+           autoComplete="on"
+           value={email}
+           onChange={e => setUsername(e.target.value)}/>
 
           <h5>Password</h5>
           <input type="password"
-          placeholder="Password"/>
+          placeholder="Password"
+          value={password}
+          onChange={e => setPassword(e.target.value)}/>
 
-          <button  className="Login_SignIn">Sign In</button>
+          <button  
+          type='submit'
+          onClick={() =>
+            dispatch({
+              type: 'login' , payload:{
+                username: email ,
+                password: password
+              }
+            })
+          }
+          className="Login_SignIn">Sign In</button>
       </form>
       <p>
       Don’t have an account?
