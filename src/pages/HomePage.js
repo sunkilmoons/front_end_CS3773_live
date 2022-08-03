@@ -21,10 +21,28 @@ export const HomePage = () => {
   // useLoginWithTestUser()
 
   const handleClick = (item) => {
+    if (!state.loggedInUser) {
+      alert('Sign in to add items to your cart!')
+      return
+    }
+    // check that item isn't sold out...
+    if (countForItemInCart(item) <= 0) {
+      alert(`Sold out of ${item.name}!`)
+      return
+    }
+
     // add item to cart...
     dispatch({ type: 'add item', payload: { item } })
 
     alert(`You added ${item.name} to your cart`)
+  }
+
+  const countForItemInCart = (item) => {
+    if (!state.loggedInUser) return item.stockCount
+    return (
+      item.stockCount -
+      state.loggedInUser.cart.items.filter((i) => i.name === item.name).length
+    )
   }
 
   /**
@@ -81,12 +99,12 @@ export const HomePage = () => {
       >
         Items For Sale
       </h2>
-      {/* <input
+      <input
+        style={{ maxWidth: '200px', alignSelf: 'center' }}
         value={searchText}
         onChange={(event) => setSearchText(event.target.value)}
         placeholder="search"
-
-      />*/}
+      />
       <button
         style={{
           margin: 1,
@@ -169,7 +187,7 @@ export const HomePage = () => {
               />
               <p>Desc: {item.description}</p>
               <p>${item.price}</p>
-              <p>Availability: {item.stockCount}</p>
+              <p>Availability: {countForItemInCart(item)}</p>
             </div>
           ))}
       </ul>

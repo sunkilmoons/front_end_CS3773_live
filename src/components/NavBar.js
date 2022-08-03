@@ -36,7 +36,7 @@ export const NavBar = () => {
               style={{ color: 'black ' }}
             />
           </Link>
-          <Search />
+          {/* <Search /> */}
         </div>
       </div>
     </nav>
