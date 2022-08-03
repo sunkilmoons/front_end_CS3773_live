@@ -160,12 +160,12 @@ export const reducer = (state, action) => {
 
     case 'apply coupon':
       let error = null
-      if (!couponCode) currentUser.cart.coupon = null
+      if (!couponCode && currentUser) currentUser.cart.coupon = null
       else {
         const storeCoupon = state.couponCodes.filter(
           (c) => c.code === couponCode
         )[0]
-        currentUser.cart.coupon = storeCoupon || null
+        if (currentUser) currentUser.cart.coupon = storeCoupon || null
         if (!storeCoupon) error = 'Incorrect coupon code!'
       }
 
@@ -173,7 +173,8 @@ export const reducer = (state, action) => {
         ...state,
         users: [
           ...state.users.map((u) => {
-            if (u.username === currentUser.username) return currentUser
+            if (currentUser && u.username === currentUser.username)
+              return currentUser
             return u
           }),
         ],
@@ -183,24 +184,28 @@ export const reducer = (state, action) => {
     case 'checkout':
       let stateItems = [...state.items]
 
-      for (let itm of currentUser.cart.items) {
-        stateItems = stateItems.map((i) => {
-          if (i.name === itm.name) {
-            return { ...i, stockCount: i.stockCount - 1 }
-          }
-          return i
-        })
-      }
+      if (currentUser)
+        for (let itm of currentUser.cart.items) {
+          stateItems = stateItems.map((i) => {
+            if (i.name === itm.name) {
+              return { ...i, stockCount: i.stockCount - 1 }
+            }
+            return i
+          })
+        }
 
-      currentUser.cart.items = []
-      currentUser.cart.coupon = null
+      if (currentUser) {
+        currentUser.cart.items = []
+        currentUser.cart.coupon = null
+      }
 
       return {
         ...state,
         items: stateItems,
         users: [
           ...state.users.map((u) => {
-            if (u.username === currentUser.username) return currentUser
+            if (currentUser && u.username === currentUser.username)
+              return currentUser
             return u
           }),
         ],
@@ -208,14 +213,17 @@ export const reducer = (state, action) => {
       }
 
     case 'clear cart':
-      currentUser.cart.items = []
-      currentUser.cart.coupon = null
+      if (currentUser) {
+        currentUser.cart.items = []
+        currentUser.cart.coupon = null
+      }
 
       return {
         ...state,
         users: [
           ...state.users.map((u) => {
-            if (u.username === currentUser.username) return currentUser
+            if (currentUser && u.username === currentUser.username)
+              return currentUser
             return u
           }),
         ],
