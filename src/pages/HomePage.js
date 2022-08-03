@@ -18,23 +18,13 @@ export const HomePage = () => {
 
   // login with test user so we have a cart to work with.
   // until we get the account page setup.
-  useLoginWithTestUser()
+  // useLoginWithTestUser()
 
   const handleClick = (item) => {
     // add item to cart...
     dispatch({ type: 'add item', payload: { item } })
 
-    alert(
-      `You clicked item: ${JSON.stringify(
-        item,
-        null,
-        2
-      )}\n\nThe previous cart looked like ${JSON.stringify(
-        state.loggedInUser?.cart?.items,
-        null,
-        4
-      )}`
-    )
+    alert(`You added ${item.name} to your cart`)
   }
 
   /**
@@ -42,25 +32,24 @@ export const HomePage = () => {
    *  Positive numbers will be positioned last, negative first
    */
   function handleSort(itemA, itemB) {
-      switch (sortType) {
-
+    switch (sortType) {
       case SORT_PRICE:
         if (sortASC) return itemA.price > itemB.price ? 1 : -1
         else return itemA.price < itemB.price ? 1 : -1
 
       case SORT_AVAIL:
         // TODO: handle availability here...
-         if (sortASC) return itemA.stockCount > itemB.stockCount ? 1 : -1
-         else return itemA.stockCount < itemB.stockCount ? 1 : -1
+        if (sortASC) return itemA.stockCount > itemB.stockCount ? 1 : -1
+        else return itemA.stockCount < itemB.stockCount ? 1 : -1
 
-          case SORT_RESET:
-              return itemA != itemB ? -1 : 1
+      case SORT_RESET:
+        return itemA != itemB ? -1 : 1
 
-       default:
+      default:
         return 0
     }
   }
- 
+
   return (
     <div
       className="App"
@@ -92,44 +81,49 @@ export const HomePage = () => {
       >
         Items For Sale
       </h2>
-          {/* <input
+      {/* <input
         value={searchText}
         onChange={(event) => setSearchText(event.target.value)}
         placeholder="search"
 
       />*/}
-          <button
-              style={{
-                  margin: 1,
-                  borderOutline: 1,
-                  borderRadius: 10,
-                  width: 100,
-                  alignSelf: 'center',
-              } }
-              onClick={() => setSortType(SORT_PRICE)}>Sort By Price</button>
-          <button
-              style={{
-                  margin: 1,
-                  borderOutline: 1,
-                  borderRadius: 10,
-                  width: 130,
-                  alignSelf: 'center',
-              }}
-              onClick={() => setSortType(SORT_AVAIL)}>
+      <button
+        style={{
+          margin: 1,
+          borderOutline: 1,
+          borderRadius: 10,
+          width: 100,
+          alignSelf: 'center',
+        }}
+        onClick={() => setSortType(SORT_PRICE)}
+      >
+        Sort By Price
+      </button>
+      <button
+        style={{
+          margin: 1,
+          borderOutline: 1,
+          borderRadius: 10,
+          width: 130,
+          alignSelf: 'center',
+        }}
+        onClick={() => setSortType(SORT_AVAIL)}
+      >
         Sort By Availability
-          </button>
-          <button
-              style={{
-                  margin: 1,
-                  borderOutline: 1,
-                  borderRadius: 10,
-                  width: 130,
-                  alignSelf: 'center',
-              }}
-              onClick={() => setSortType(SORT_RESET)}>
-              No Sort
-          </button>
-          
+      </button>
+      <button
+        style={{
+          margin: 1,
+          borderOutline: 1,
+          borderRadius: 10,
+          width: 130,
+          alignSelf: 'center',
+        }}
+        onClick={() => setSortType(SORT_RESET)}
+      >
+        No Sort
+      </button>
+
       <ul
         style={{
           flex: 0,

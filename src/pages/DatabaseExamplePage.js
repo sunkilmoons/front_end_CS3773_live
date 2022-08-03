@@ -183,12 +183,13 @@ It contains the state for the entire app and handles all state changes. You'll n
           <button
             style={{
               height: 'fit-content',
-              backgroundColor: 'rgba(0, 0, 0, 0.1)',
+              backgroundColor: 'rgba(0, 0, 0, 0.05)',
               fontSize: '1rem',
               fontWeight: 700,
               border: 'none',
-              color: 'rgba(225, 0, 50, 1)',
-              padding: '8px',
+              borderRadius: '24px',
+              color: '#8b0000',
+              padding: '8px 16px',
               cursor: 'pointer',
             }}
             onClick={() => dispatch({ type: 'reset db' })}
